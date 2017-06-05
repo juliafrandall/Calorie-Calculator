@@ -1,0 +1,24 @@
+{
+  "name": "CalorieCounter",
+  "version": "1.0.0",
+  "engines": {
+    "node": "6.0.0",
+    "npm": "3.8.6"
+  },
+  "description": "A calorie counter",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juliafrandall/Calorie-Calculator.git"
+  },
+  "author": "Julia Randall",
+  "bugs": {
+    "url": "https://github.com/juliafrandall/Calorie-Calculator.git"
+  },
+  "homepage": "https://github.com/juliafrandall/Calorie-Calculator.git",
+  "dependencies": {
+    "express": "4.14.0"
+  }
+}
