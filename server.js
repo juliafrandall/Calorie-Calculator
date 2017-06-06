@@ -12,19 +12,16 @@ var config = {
 }
 
 app.post('/api/entry', function(request, response){
-  console.log(request.body, "this is the request body")
   var food = request.body.items
   console.log(food, "this is the food")
   axios({
     method: 'POST',
     url : 'https://trackapi.nutritionix.com/v2/natural/nutrients',
-    body : {
-      "query" : food,
-      "timezone" : "US/Eastern"
-    },
-    headers : config
+    headers : config,
+    data : {"query": food}
   })
   .then(function(response){
+    console.log(response.data.foods[0].nf_calories)
   })
   .catch(function(error){
     console.log(error);

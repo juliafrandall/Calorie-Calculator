@@ -28,10 +28,14 @@ handleSubmit(event) {
   render(){
     return(
       <div className='chatForm'>
-        <label> Enter the foods you have eaten today:
+        <label> Enter the foods you have eaten today:</label>
+      <div>
           <input className='form' type='text' onChange={this.handleForm} />
-        </label>
-          <button className='btn btn-default' onClick={this.handleSubmit}> Submit </button>
+
+      </div>
+      <div>
+          <button className='btn btn-default' onClick={this.handleSubmit}> Add </button>
+      </div>
       </div>
     )
   }

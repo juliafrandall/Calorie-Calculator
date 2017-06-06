@@ -7131,13 +7131,21 @@ var CalculatorForm = exports.CalculatorForm = function (_React$Component) {
         _react2.default.createElement(
           'label',
           null,
-          ' Enter the foods you have eaten today:',
+          ' Enter the foods you have eaten today:'
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
           _react2.default.createElement('input', { className: 'form', type: 'text', onChange: this.handleForm })
         ),
         _react2.default.createElement(
-          'button',
-          { className: 'btn btn-default', onClick: this.handleSubmit },
-          ' Submit '
+          'div',
+          null,
+          _react2.default.createElement(
+            'button',
+            { className: 'btn btn-default', onClick: this.handleSubmit },
+            ' Add '
+          )
         )
       );
     }
