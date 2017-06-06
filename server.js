@@ -21,6 +21,7 @@ app.post('/api/entry', function(request, response){
     data : {"query": food}
   })
   .then(function(response){
+    var food = response.data.foods[0].nf_calories
     console.log(response.data.foods[0].nf_calories)
   })
   .catch(function(error){

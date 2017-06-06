@@ -15,15 +15,17 @@ export class CalculatorForm extends React.Component {
 
   }
 
-handleForm(event) {this.setState({items: event.target.value})}
+  handleForm(event) {this.setState({items: event.target.value})}
 
-handleSubmit(event) {
-  let info = this.state
-  axios.post('/api/entry', info)
-    .then(function(response){
-      console.log(response, "this is it")
+  handleSubmit(event) {
+    var items = [];
+    let info = this.state
+    axios.post('/api/entry', info)
+    .then(function(item){
+      items.push(item);
+      console.log(items)
     })
-}
+  }
 
   render(){
     return(
@@ -31,7 +33,6 @@ handleSubmit(event) {
         <label> Enter the foods you have eaten today:</label>
       <div>
           <input className='form' type='text' onChange={this.handleForm} />
-
       </div>
       <div>
           <button className='btn btn-default' onClick={this.handleSubmit}> Add </button>
