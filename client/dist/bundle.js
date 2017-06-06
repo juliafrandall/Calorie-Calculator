@@ -7510,7 +7510,10 @@ var CalculatorForm = exports.CalculatorForm = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (CalculatorForm.__proto__ || Object.getPrototypeOf(CalculatorForm)).call(this, props));
 
     _this.state = {
-      items: []
+      items: {
+        name: '',
+        calories: ''
+      }
     };
 
     _this.handleForm = _this.handleForm.bind(_this);
@@ -7527,11 +7530,15 @@ var CalculatorForm = exports.CalculatorForm = function (_React$Component) {
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(event) {
-      var items = [];
+      // var items = [];
       var info = this.state;
       _axios2.default.post('/api/entry', info).then(function (item) {
-        items.push(item);
-        console.log(items);
+        // console.log(item)
+        var result = {
+          name: item.data.name,
+          calories: item.data.cal
+          // items.push(item);
+        };console.log(result);
       });
     }
   }, {

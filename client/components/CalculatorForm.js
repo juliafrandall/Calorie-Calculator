@@ -7,7 +7,10 @@ export class CalculatorForm extends React.Component {
   constructor(props){
     super(props);
       this.state = {
-        items: []
+        items: {
+          name: '',
+          calories: '',
+        }
       }
 
     this.handleForm   = this.handleForm.bind(this);
@@ -18,12 +21,17 @@ export class CalculatorForm extends React.Component {
   handleForm(event) {this.setState({items: event.target.value})}
 
   handleSubmit(event) {
-    var items = [];
+    // var items = [];
     let info = this.state
     axios.post('/api/entry', info)
     .then(function(item){
-      items.push(item);
-      console.log(items)
+      // console.log(item)
+      var result = {
+        name     : item.data.name,
+        calories : item.data.cal
+      }
+      // items.push(item);
+      console.log(result)
     })
   }
 
