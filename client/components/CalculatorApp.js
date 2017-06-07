@@ -10,18 +10,9 @@ class CalculatorApp extends React.Component {
     }
   }
 
-  // componentDidMount(){
-  //   axios.post('/api/items')
-  //   .then(function(response){
-  //     this.setState({
-  //       items: response.data
-  //     })
-  //   })
-  // }
-
   render(){
     return (
-      <div>
+      <div className='foodApp'>
       <h1>Calorie Calculator</h1>
       <CalculatorForm />
       </div>

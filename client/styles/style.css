@@ -1,9 +1,11 @@
-#calculatorlist{
-  font-family: avenir;
-  font-size: 30px;
+.foodApp {
+  margin-left: 20px;
 }
 
-ul{
+.calculatorlist{
+  font-size: 15px;
+}
+
+.list{
   list-style-type: none;
-  
 }

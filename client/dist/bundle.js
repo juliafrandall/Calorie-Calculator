@@ -7536,13 +7536,9 @@ var CalculatorForm = exports.CalculatorForm = function (_React$Component) {
       var info = this.state;
       _axios2.default.post('/api/entry', info).then(function (item) {
         var result = { name: item.data.name, calories: item.data.cal };
-        items.push(result
-        // console.log(this.state.total, "this is the total")
-        );var newTotal = this.state.total + item.data.cal;
-        this.setState({ items: items, total: newTotal }
-
-        // console.log(this.state, "this is the state")
-        );
+        var newTotal = this.state.total + item.data.cal;
+        items.push(result);
+        this.setState({ items: items, total: newTotal });
       }.bind(this));
     }
   }, {
@@ -7562,7 +7558,7 @@ var CalculatorForm = exports.CalculatorForm = function (_React$Component) {
           _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement('input', { className: 'form', type: 'text', onChange: this.handleForm })
+            _react2.default.createElement('input', { className: 'form', type: 'text', placeholder: 'enter food here', onChange: this.handleForm })
           ),
           _react2.default.createElement(
             'div',
@@ -11440,21 +11436,12 @@ var CalculatorApp = function (_React$Component) {
     return _this;
   }
 
-  // componentDidMount(){
-  //   axios.post('/api/items')
-  //   .then(function(response){
-  //     this.setState({
-  //       items: response.data
-  //     })
-  //   })
-  // }
-
   _createClass(CalculatorApp, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'foodApp' },
         _react2.default.createElement(
           'h1',
           null,
@@ -25976,6 +25963,11 @@ var CalculatorList = function CalculatorList(props) {
     'div',
     { className: 'calculatorlist' },
     _react2.default.createElement(
+      'p',
+      { className: 'foodlog' },
+      ' Your food log contains: '
+    ),
+    _react2.default.createElement(
       'ul',
       { className: 'list' },
       props.items.map(function (item, index) {
@@ -25983,7 +25975,7 @@ var CalculatorList = function CalculatorList(props) {
           'li',
           { key: index },
           item.name,
-          ' - ',
+          '             ',
           item.calories
         );
       })
@@ -25994,6 +25986,7 @@ var CalculatorList = function CalculatorList(props) {
       _react2.default.createElement(
         'p',
         { className: 'total' },
+        'Total Calories Today: ',
         props.total
       )
     )

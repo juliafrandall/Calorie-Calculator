@@ -4,6 +4,7 @@ import CalculatorList from './CalculatorList.js'
 
 const items = [{name: '', calories: ''}];
 const total = 0
+
 export class CalculatorForm extends React.Component {
   constructor(props){
     super(props);
@@ -23,12 +24,9 @@ export class CalculatorForm extends React.Component {
     axios.post('/api/entry', info)
     .then(function(item){
       let result = {name: item.data.name, calories: item.data.cal}
-      items.push(result)
-      // console.log(this.state.total, "this is the total")
       let newTotal = this.state.total + item.data.cal
+      items.push(result)
       this.setState({items: items, total: newTotal})
-
-      // console.log(this.state, "this is the state")
     }.bind(this))
   }
 
@@ -38,7 +36,7 @@ export class CalculatorForm extends React.Component {
       <div className='chatForm'>
         <label> Enter the foods you have eaten today:</label>
         <div>
-          <input className='form' type='text' onChange={this.handleForm} />
+          <input className='form' type='text' placeholder='enter food here' onChange={this.handleForm} />
         </div>
         <div>
           <button className='btn btn-default' onClick={this.handleSubmit}> Add </button>
