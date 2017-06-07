@@ -1,7 +1,7 @@
 var express = require('express');
 var axios = require('axios')
 var app = express();
-var dotenv = require('dotenv').config({path: '.env'});
+var dotenv = require('dotenv').config();
 
 // require middleware
 require('./server/config/middleware.js')(app, express);
@@ -20,7 +20,7 @@ var config = {
 
 app.post('/api/entry', function(req, res){
   var food = req.body.items
-  // console.log('food: ', food);
+
   axios({
     method: 'POST',
     url : 'https://trackapi.nutritionix.com/v2/natural/nutrients',
@@ -28,12 +28,10 @@ app.post('/api/entry', function(req, res){
     data : {"query": food}
   })
   .then(function(response){
-    // console.log('then:: ', response.data.foods[0].nf_calories)
     var item = {
       name : response.data.foods[0].food_name,
       cal  : response.data.foods[0].nf_calories
     }
-    // console.log(item, "these are the item")
     res.send(item);
   })
   .catch(function(error){

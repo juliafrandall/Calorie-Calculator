@@ -11,4 +11,6 @@ How to Run Locally:
 
 2. node server.js : to start the server
 
-3. webpack -w : to get the bundle file in the dist directory started.
+3. webpack -w : to get the bundle file in the dist directory started
+
+4. port 8000
