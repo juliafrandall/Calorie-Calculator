@@ -7492,14 +7492,20 @@ var _react = __webpack_require__(11);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _CalculatorList = __webpack_require__(233);
+
+var _CalculatorList2 = _interopRequireDefault(_CalculatorList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //'/entry'
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var items = [{ name: '', calories: '' }];
+var total = 0;
 
 var CalculatorForm = exports.CalculatorForm = function (_React$Component) {
   _inherits(CalculatorForm, _React$Component);
@@ -7510,15 +7516,12 @@ var CalculatorForm = exports.CalculatorForm = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (CalculatorForm.__proto__ || Object.getPrototypeOf(CalculatorForm)).call(this, props));
 
     _this.state = {
-      items: {
-        name: '',
-        calories: ''
-      }
+      items: items,
+      total: total
     };
 
     _this.handleForm = _this.handleForm.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
-
     return _this;
   }
 
@@ -7530,41 +7533,51 @@ var CalculatorForm = exports.CalculatorForm = function (_React$Component) {
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(event) {
-      // var items = [];
       var info = this.state;
       _axios2.default.post('/api/entry', info).then(function (item) {
-        // console.log(item)
-        var result = {
-          name: item.data.name,
-          calories: item.data.cal
-          // items.push(item);
-        };console.log(result);
-      });
+        var result = { name: item.data.name, calories: item.data.cal };
+        items.push(result
+        // console.log(this.state.total, "this is the total")
+        );var newTotal = this.state.total + item.data.cal;
+        this.setState({ items: items, total: newTotal }
+
+        // console.log(this.state, "this is the state")
+        );
+      }.bind(this));
     }
   }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'chatForm' },
-        _react2.default.createElement(
-          'label',
-          null,
-          ' Enter the foods you have eaten today:'
-        ),
+        null,
         _react2.default.createElement(
           'div',
-          null,
-          _react2.default.createElement('input', { className: 'form', type: 'text', onChange: this.handleForm })
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
+          { className: 'chatForm' },
           _react2.default.createElement(
-            'button',
-            { className: 'btn btn-default', onClick: this.handleSubmit },
-            ' Add '
+            'label',
+            null,
+            ' Enter the foods you have eaten today:'
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement('input', { className: 'form', type: 'text', onChange: this.handleForm })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'button',
+              { className: 'btn btn-default', onClick: this.handleSubmit },
+              ' Add '
+            )
           )
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(_CalculatorList2.default, { items: this.state.items, total: this.state.total })
         )
       );
     }
@@ -11399,6 +11412,10 @@ var _react = __webpack_require__(11);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _axios = __webpack_require__(100);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 var _CalculatorForm = __webpack_require__(59);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -11408,8 +11425,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// import { render } from 'react'
-
 
 var CalculatorApp = function (_React$Component) {
   _inherits(CalculatorApp, _React$Component);
@@ -11425,6 +11440,15 @@ var CalculatorApp = function (_React$Component) {
     return _this;
   }
 
+  // componentDidMount(){
+  //   axios.post('/api/items')
+  //   .then(function(response){
+  //     this.setState({
+  //       items: response.data
+  //     })
+  //   })
+  // }
+
   _createClass(CalculatorApp, [{
     key: 'render',
     value: function render() {
@@ -11436,11 +11460,7 @@ var CalculatorApp = function (_React$Component) {
           null,
           'Calorie Calculator'
         ),
-        _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(_CalculatorForm.CalculatorForm, null)
-        )
+        _react2.default.createElement(_CalculatorForm.CalculatorForm, null)
       );
     }
   }]);
@@ -25933,6 +25953,54 @@ var valueEqual = function valueEqual(a, b) {
 };
 
 exports.default = valueEqual;
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(11);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CalculatorList = function CalculatorList(props) {
+  return _react2.default.createElement(
+    'div',
+    { className: 'calculatorlist' },
+    _react2.default.createElement(
+      'ul',
+      { className: 'list' },
+      props.items.map(function (item, index) {
+        return _react2.default.createElement(
+          'li',
+          { key: index },
+          item.name,
+          ' - ',
+          item.calories
+        );
+      })
+    ),
+    _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
+        'p',
+        { className: 'total' },
+        props.total
+      )
+    )
+  );
+};
+
+exports.default = CalculatorList;
 
 /***/ })
 /******/ ]);
