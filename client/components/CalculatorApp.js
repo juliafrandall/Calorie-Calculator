@@ -1,5 +1,5 @@
 import React from 'react';
-// import { render } from 'react'
+import axios from 'axios';
 import { CalculatorForm } from './CalculatorForm.js'
 
 class CalculatorApp extends React.Component {
@@ -10,13 +10,20 @@ class CalculatorApp extends React.Component {
     }
   }
 
+  // componentDidMount(){
+  //   axios.post('/api/items')
+  //   .then(function(response){
+  //     this.setState({
+  //       items: response.data
+  //     })
+  //   })
+  // }
+
   render(){
     return (
       <div>
       <h1>Calorie Calculator</h1>
-      <div>
-        <CalculatorForm />
-      </div>
+      <CalculatorForm />
       </div>
     )
   }
